@@ -2,7 +2,7 @@ import anki_vector
 from flask_socketio import emit
 from vectorcloud import socketio
 from vectorcloud.main.models import Vectors
-from vectorcloud.plugins.utils import run_plugin
+from vectorcloud.main.utils import run_plugin
 
 
 class Plugin:
@@ -55,7 +55,7 @@ class Plugin:
                 },
             ],
             "plugin_js": ["stats.js"],
-            "plugin_dependencies": ["logbook"],
+            "plugin_dependencies": ["logbook", "cube"],
         }
         return interface_data
 

@@ -1,6 +1,6 @@
 import anki_vector
 from vectorcloud.main.models import Vectors
-from vectorcloud.plugins.utils import run_plugin
+from vectorcloud.main.utils import run_plugin
 
 
 class Plugin:

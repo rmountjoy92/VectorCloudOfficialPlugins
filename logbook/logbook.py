@@ -4,7 +4,7 @@ from flask_socketio import emit
 from vectorcloud import db, socketio
 from vectorcloud.main.models import Logbook, Vectors
 from vectorcloud.main.moment import create_moment
-from vectorcloud.plugins.utils import run_plugin
+from vectorcloud.main.utils import run_plugin
 
 
 class Plugin:

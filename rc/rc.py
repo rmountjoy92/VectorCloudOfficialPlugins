@@ -3,7 +3,7 @@ import anki_vector
 from flask import Response, url_for, request
 from vectorcloud import app
 from vectorcloud.main.models import Vectors
-from vectorcloud.plugins.utils import run_plugin
+from vectorcloud.main.utils import run_plugin
 
 
 class Plugin:
