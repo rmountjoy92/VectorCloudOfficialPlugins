@@ -33,14 +33,17 @@ $( document ).ready(function() {
     });
     $("#logbook-refresh-btn").on('click', function(e) {
         var from_item = $("#logbook-from-item").val();
+        console.log(from_item)
         socket.emit('request_logbook', {from_item: from_item});
     });
     $("#logbook-next-page-btn").on('click', function(e) {
         var from_item = $("#logbook-from-item").val() + 31;
+        console.log(from_item)
         socket.emit('request_logbook', {from_item: from_item});
     });
     $("#logbook-next-page-btn").on('click', function(e) {
         var from_item = $("#logbook-from-item").val() - 31;
+        console.log(from_item)
         socket.emit('request_logbook', {from_item: from_item});
     });
 });
