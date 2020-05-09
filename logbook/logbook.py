@@ -81,6 +81,7 @@ class Plugin:
 
         items = logbook_items[self.from_item : self.from_item + 30]
         for item in items:
+            item.dt = json.loads(item.value_json)["dt"]
             item = create_moment(item)
         html = render_template(
             "plugins/logbook-rows.html", logbook_items=items, from_item=self.from_item
