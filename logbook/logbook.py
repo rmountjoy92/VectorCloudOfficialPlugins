@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import render_template
 from flask_socketio import emit
 from vectorcloud import db, socketio
-from vectorcloud.main.models import Logbook, Vectors
+from vectorcloud.main.models import Logbook, Vectors, PluginStorage
 from vectorcloud.main.moment import create_moment
 from vectorcloud.main.utils import run_plugin
 
@@ -109,6 +109,20 @@ class Plugin:
 
     def run(self):
         if self.emit_only is False:
+            log = PluginStorage()
+            log.plugin = "logbook"
+            log.value_json = str(
+                {
+                    "name": self.name,
+                    "info": self.info,
+                    "dt": datetime.now(),
+                    "log_type": self.log_type,
+                    "vector_id": self.vector_id,
+                }
+            )
+            db.session.add(log)
+            db.session.commit()
+
             log = Logbook()
             log.name = self.name
             log.info = self.info
