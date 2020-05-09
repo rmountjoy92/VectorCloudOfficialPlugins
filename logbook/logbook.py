@@ -118,18 +118,15 @@ class Plugin:
             log = PluginStorage()
             log.plugin = "logbook"
             log.entry_type = "logbook_item"
-            value_json = json.loads(
-                str(
-                    {
-                        "name": self.name,
-                        "info": self.info,
-                        "dt": datetime.now(),
-                        "log_type": self.log_type,
-                        "vector_id": self.vector_id,
-                    }
-                )
+            log.value_json = json.dumps(
+                {
+                    "name": self.name,
+                    "info": self.info,
+                    "dt": datetime.now(),
+                    "log_type": self.log_type,
+                    "vector_id": self.vector_id,
+                }
             )
-            log.value_json = json.dumps(value_json)
             db.session.add(log)
             db.session.commit()
 
