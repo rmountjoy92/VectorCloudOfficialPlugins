@@ -65,19 +65,23 @@ class Plugin:
         }
         return interface_data
 
-    def get_html(self, vector, from_item=1):
-        items = vector.logbook_items[from_item:from_item + 30]
+    def get_html(self, vector):
+        if self.from_item < 0:
+            self.from_item = 0
+        items = vector.logbook_items[self.from_item : self.from_item + 30]
         for item in items:
             item = create_moment(item)
         html = render_template(
-            "plugins/logbook-rows.html", logbook_items=items
+            "plugins/logbook-rows.html", logbook_items=items, from_item=self.from_item
         )
         return html
 
     def on_startup(self):
         @socketio.on("request_logbook")
-        def handle_logbook_request():
-            run_plugin("logbook", {"emit_only": True})
+        def handle_logbook_request(json):
+            run_plugin(
+                "logbook", {"emit_only": True, "from_item": json.get("from_item", None)}
+            )
 
         @socketio.on("logbook_log")
         def handle_logbook_log(json):

@@ -9,7 +9,7 @@ function init_logbook() {
 
 
 socket.on('connect', function() {
-    socket.emit('request_logbook');
+    socket.emit('request_logbook', {from_item: 0});
 });
 
 socket.on('logbook', function(message) {
@@ -30,5 +30,17 @@ $( document ).ready(function() {
     $(".show-logbook-btn").on('click', function(e) {
         var vector_id = $(this).closest('.plugin-icons-container').attr('vector_id');
         show_panel(".logbook-panel", vector_id, $(this));
+    });
+    $("#logbook-refresh-btn").on('click', function(e) {
+        var from_item = $("#logbook-from-item").val();
+        socket.emit('request_logbook', {from_item: from_item});
+    });
+    $("#logbook-next-page-btn").on('click', function(e) {
+        var from_item = $("#logbook-from-item").val() + 31;
+        socket.emit('request_logbook', {from_item: from_item});
+    });
+    $("#logbook-next-page-btn").on('click', function(e) {
+        var from_item = $("#logbook-from-item").val() - 31;
+        socket.emit('request_logbook', {from_item: from_item});
     });
 });

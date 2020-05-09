@@ -1,4 +1,5 @@
 {% if logbook_items %}
+    <input id="logbook-from-item" class="hide" value="{{ from_item }}">
     {% for item in logbook_items %}
         <div
                 {% if item.log_type == "success" %}
