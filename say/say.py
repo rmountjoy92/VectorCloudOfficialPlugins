@@ -12,8 +12,7 @@ class Plugin:
 
         # set defaults for omitted settings
         if not hasattr(self, "vector_id"):
-            vector = Vectors.query.first()
-            self.vector_id = vector.id
+            self.vector_id = 1
         if not hasattr(self, "text_to_say"):
             self.text_to_say = "Hello World"
         if not hasattr(self, "log"):

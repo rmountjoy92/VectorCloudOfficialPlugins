@@ -19,7 +19,7 @@ class Plugin:
         if not hasattr(self, "name"):
             self.name = "Unnamed logbook item"
         if not hasattr(self, "vector_id"):
-            self.vector_id = Vectors.query.first().id
+            self.vector_id = 1
         if not hasattr(self, "info"):
             self.info = None
         if not hasattr(self, "log_type"):
