@@ -70,9 +70,13 @@ class Plugin:
         return interface_data
 
     def get_html(self, vector):
-        logbook_items = PluginStorage.query.filter_by(
-            entry_type="logbook_item", vector_id=vector.id
-        ).all()
+        logbook_items = (
+            PluginStorage.query.filter_by(
+                entry_type="logbook_item", vector_id=vector.id
+            )
+            .order_by(PluginStorage.id.desc())
+            .all()
+        )
 
         if self.from_item < 0:
             self.from_item = 0
