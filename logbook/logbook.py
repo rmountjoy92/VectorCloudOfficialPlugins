@@ -122,7 +122,7 @@ class Plugin:
                 {
                     "name": self.name,
                     "info": self.info,
-                    "dt": datetime.now(),
+                    "dt": str(datetime.now()),
                     "log_type": self.log_type,
                     "vector_id": self.vector_id,
                 }
