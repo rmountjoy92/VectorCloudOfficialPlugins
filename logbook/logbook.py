@@ -74,7 +74,6 @@ class Plugin:
         elif self.from_item > len(vector.logbook_items):
             self.from_item = len(vector.logbook_items) - 30
 
-        print(self.from_item)
         items = vector.logbook_items[self.from_item : self.from_item + 30]
         for item in items:
             item = create_moment(item)
