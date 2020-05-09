@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import render_template
 from flask_socketio import emit
 from vectorcloud import db, socketio
-from vectorcloud.main.models import Logbook, Vectors, PluginStorage
+from vectorcloud.main.models import Vectors, PluginStorage
 from vectorcloud.main.moment import create_moment
 from vectorcloud.main.utils import run_plugin
 
@@ -131,15 +131,6 @@ class Plugin:
                     "vector_id": self.vector_id,
                 }
             )
-            db.session.add(log)
-            db.session.commit()
-
-            log = Logbook()
-            log.name = self.name
-            log.info = self.info
-            log.dt = datetime.now()
-            log.log_type = self.log_type
-            log.vector = Vectors.query.filter_by(id=self.vector_id).first()
             db.session.add(log)
             db.session.commit()
 
