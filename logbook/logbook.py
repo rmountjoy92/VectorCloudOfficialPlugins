@@ -68,8 +68,8 @@ class Plugin:
         return interface_data
 
     def get_html(self, vector):
-        if self.from_item < 0:
-            self.from_item = 0
+        # if self.from_item < 0:
+        #     self.from_item = 0
         items = vector.logbook_items[self.from_item : self.from_item + 30]
         for item in items:
             item = create_moment(item)
