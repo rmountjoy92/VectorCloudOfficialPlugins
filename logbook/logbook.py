@@ -111,10 +111,10 @@ class Plugin:
 
         @socketio.on("logbook_clear")
         def handle_logbook_clear(json):
-            vector = Vectors.query.filter_by(id=json.get("vector_id")).first()
-            if vector:
-                Logbook.query.filter_by(vector_id=vector.id).delete()
-                db.session.commit()
+            PluginStorage.query.filter_by(
+                entry_type="logbook_item", vector_id=vector.id
+            ).delete()
+            db.session.commit()
 
     def run(self):
         if self.emit_only is False:
