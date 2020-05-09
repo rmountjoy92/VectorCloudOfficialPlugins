@@ -84,7 +84,7 @@ class Plugin:
             value_json = json.loads(item.value_json)
             item.dt = value_json["dt"]
             item = create_moment(item)
-            item.value_json = value_json
+            item.value_json_x = value_json
 
         html = render_template(
             "plugins/logbook-rows.html", logbook_items=items, from_item=self.from_item

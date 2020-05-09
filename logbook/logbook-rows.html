@@ -2,19 +2,19 @@
     <input id="logbook-from-item" class="hide" value="{{ from_item }}">
     {% for item in logbook_items %}
         <div
-                {% if item.value_json['log_type'] == "success" %}
+                {% if item.value_json_x['log_type'] == "success" %}
                     class="successful_cmd"
-                {% elif item.value_json['log_type'] == "fail" %}
+                {% elif item.value_json_x['log_type'] == "fail" %}
                     class="failed_cmd"
                 {% endif %} >
 
             <li class="collection-item feed-item-li">
                 <div class="font-weight-900">
-                    <text class="selectable">{{ item.value_json['name'] }}</text> <span class="secondary-content">{{ item.moment }}</span>
+                    <text class="selectable">{{ item.value_json_x['name'] }}</text> <span class="secondary-content">{{ item.moment }}</span>
                 </div>
 
                 <div class="row pl-1 pt-1">
-                    <i class="material-icons-outlined icon-btn theme-secondary-text show-logbook-info" data-name="{{ item.value_json['name'] }}" data-info="{{ item.value_json['info'] }}">info
+                    <i class="material-icons-outlined icon-btn theme-secondary-text show-logbook-info" data-name="{{ item.value_json_x['name'] }}" data-info="{{ item.value_json_x['info'] }}">info
                     </i>
                 </div>
 
