@@ -49,5 +49,6 @@ $( document ).ready(function() {
     $("#logbook-clear-btn").on('click', function(e) {
         var vector_id = $(this).closest('.plugin-panels-container').attr('vector_id');
         socket.emit('logbook_clear', {vector_id: vector_id});
+        socket.emit('request_logbook');
     });
 });
