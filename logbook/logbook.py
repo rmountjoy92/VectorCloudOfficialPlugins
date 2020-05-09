@@ -69,6 +69,7 @@ class Plugin:
         return interface_data
 
     def get_html(self, vector):
+        # logbook_items = PluginStorage
         if self.from_item < 0:
             self.from_item = 0
         elif self.from_item > len(vector.logbook_items):
@@ -111,6 +112,7 @@ class Plugin:
         if self.emit_only is False:
             log = PluginStorage()
             log.plugin = "logbook"
+            log.entry_type = "logbook_item"
             log.value_json = str(
                 {
                     "name": self.name,
