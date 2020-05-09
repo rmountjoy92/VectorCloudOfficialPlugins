@@ -32,17 +32,17 @@ $( document ).ready(function() {
         show_panel(".logbook-panel", vector_id, $(this));
     });
     $("#logbook-refresh-btn").on('click', function(e) {
-        var from_item = $("#logbook-from-item").val().parseInt();
+        var from_item = parseInt($("#logbook-from-item").val(), 10);
         console.log(from_item)
         socket.emit('request_logbook', {from_item: from_item});
     });
     $("#logbook-next-page-btn").on('click', function(e) {
-        var from_item = $("#logbook-from-item").val().parseInt() + 31;
+        var from_item = parseInt($("#logbook-from-item").val(), 10) + 31;
         console.log(from_item)
         socket.emit('request_logbook', {from_item: from_item});
     });
     $("#logbook-prev-page-btn").on('click', function(e) {
-        var from_item = $("#logbook-from-item").val().parseInt() - 31;
+        var from_item = parseInt($("#logbook-from-item").val(), 10) - 31;
         console.log(from_item)
         socket.emit('request_logbook', {from_item: from_item});
     });
