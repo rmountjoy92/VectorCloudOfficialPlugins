@@ -112,7 +112,7 @@ class Plugin:
         @socketio.on("logbook_clear")
         def handle_logbook_clear(json):
             PluginStorage.query.filter_by(
-                entry_type="logbook_item", vector_id=vector.id
+                entry_type="logbook_item", vector_id=json.get("vector_id")
             ).delete()
             db.session.commit()
 
