@@ -63,6 +63,7 @@ class Plugin:
             "plugin_panels": [
                 {"class": "logbook-panel", "template": "logbook-panel.html"},
             ],
+            "plugin_extra_html": ["logbook-rows.html"],
             "plugin_js": ["logbook.js"],
         }
         return interface_data
