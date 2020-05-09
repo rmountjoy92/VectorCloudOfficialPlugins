@@ -70,11 +70,10 @@ class Plugin:
         return interface_data
 
     def get_html(self, vector):
-        logbook_items = (
-            PluginStorage.query.filter_by(entry_type="logbook_item")
-            .filter(json.loads(PluginStorage.value_json)["vector_id"] == vector.id)
-            .all()
-        )
+        logbook_items = PluginStorage.query.filter_by(
+            entry_type="logbook_item", vector_id=vector.id
+        ).all()
+
         if self.from_item < 0:
             self.from_item = 0
         elif self.from_item > len(logbook_items):
@@ -118,6 +117,7 @@ class Plugin:
             log = PluginStorage()
             log.plugin = "logbook"
             log.entry_type = "logbook_item"
+            log.vector_id = self.vector_id
             log.value_json = json.dumps(
                 {
                     "name": self.name,
