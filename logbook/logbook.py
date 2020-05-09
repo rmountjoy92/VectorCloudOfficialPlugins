@@ -66,10 +66,11 @@ class Plugin:
         return interface_data
 
     def get_html(self, vector, from_item=1):
-        for item in vector.logbook_items[from_item:from_item + 5]:
+        items = vector.logbook_items[from_item:from_item + 5]
+        for item in items:
             item = create_moment(item)
         html = render_template(
-            "plugins/logbook-rows.html", logbook_items=vector.logbook_items
+            "plugins/logbook-rows.html", logbook_items=items
         )
         return html
 
