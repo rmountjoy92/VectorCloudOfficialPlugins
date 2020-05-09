@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from flask import render_template
 from flask_socketio import emit
@@ -69,13 +70,17 @@ class Plugin:
         return interface_data
 
     def get_html(self, vector):
-        # logbook_items = PluginStorage
+        logbook_items = (
+            PluginStorage.query.filter_by(entry_type="logbook_item")
+            .filter(json.loads(PluginStorage.value_json)["vector_id"] == vector.id)
+            .all()
+        )
         if self.from_item < 0:
             self.from_item = 0
-        elif self.from_item > len(vector.logbook_items):
-            self.from_item = len(vector.logbook_items) - 30
+        elif self.from_item > len(logbook_items):
+            self.from_item = len(logbook_items) - 30
 
-        items = vector.logbook_items[self.from_item : self.from_item + 30]
+        items = logbook_items[self.from_item : self.from_item + 30]
         for item in items:
             item = create_moment(item)
         html = render_template(
@@ -113,7 +118,7 @@ class Plugin:
             log = PluginStorage()
             log.plugin = "logbook"
             log.entry_type = "logbook_item"
-            log.value_json = str(
+            value_json = json.loads(
                 {
                     "name": self.name,
                     "info": self.info,
@@ -122,6 +127,7 @@ class Plugin:
                     "vector_id": self.vector_id,
                 }
             )
+            log.value_json = json.dumps(value_json)
             db.session.add(log)
             db.session.commit()
 
