@@ -25,6 +25,8 @@ class Plugin:
             self.log_type = None
         if not hasattr(self, "emit_only"):
             self.emit_only = False
+        if not hasattr(self, "from_item"):
+            self.from_item = 0
 
     def interface_data(self):
         interface_data = {
