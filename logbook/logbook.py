@@ -85,7 +85,7 @@ class Plugin:
 
     def on_startup(self):
         @socketio.on("request_logbook")
-        def handle_logbook_request(json=None):
+        def handle_logbook_request(json={}):
             run_plugin(
                 "logbook", {"emit_only": True, "from_item": json.get("from_item", 0)}
             )
