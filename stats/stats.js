@@ -1,7 +1,3 @@
-socket.on('connect', function() {
-    socket.emit('request_stats', {vector_id: "all"});
-});
-
 socket.on('stats', function(stats) {
     $(".plugin-panels-container").each(function(e) {
        if ($(this).attr('vector_id') == stats.id) {
@@ -54,6 +50,8 @@ socket.on('stats', function(stats) {
 });
 
 $( document ).ready(function() {
+    socket.emit('request_stats', {vector_id: "all"});
+
     setInterval(function(){
         socket.emit('request_stats', {vector_id: "all"});
     }, 60000);
